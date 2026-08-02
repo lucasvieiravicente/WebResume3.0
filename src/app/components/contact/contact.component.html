@@ -1,0 +1,50 @@
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <h2 class="section-title">{{ i18n.t().contact.title }}</h2>
+      <p class="section-lead">{{ i18n.t().contact.lead }}</p>
+
+      <ul class="contact-meta">
+        <li>
+          <i class="fas fa-envelope"></i>
+          <a [href]="'mailto:' + i18n.profile.email">{{ i18n.profile.email }}</a>
+        </li>
+        <li>
+          <i class="fas fa-phone"></i>
+          <a [href]="i18n.profile.phoneHref">{{ i18n.profile.phoneDisplay }}</a>
+        </li>
+        <li>
+          <i class="fas fa-location-dot"></i>
+          <span>{{ i18n.profile.location }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <form class="contact-form" [formGroup]="emailForm" (ngSubmit)="sendEmail()">
+      <label>
+        <span>{{ i18n.t().contact.name }}</span>
+        <input type="text" formControlName="name" [placeholder]="i18n.t().contact.namePlaceholder" />
+      </label>
+      <label>
+        <span>{{ i18n.t().contact.email }}</span>
+        <input type="email" formControlName="email" [placeholder]="i18n.t().contact.emailPlaceholder" />
+      </label>
+      <label>
+        <span>{{ i18n.t().contact.phone }}</span>
+        <input type="tel" formControlName="phoneNumber" [placeholder]="i18n.t().contact.phonePlaceholder" />
+      </label>
+      <label class="full">
+        <span>{{ i18n.t().contact.message }}</span>
+        <textarea formControlName="body" rows="5" [placeholder]="i18n.t().contact.messagePlaceholder"></textarea>
+      </label>
+
+      @if (responseMessage()) {
+        <p class="form-message">{{ responseMessage() }}</p>
+      }
+
+      <button class="btn btn-primary" type="submit" [disabled]="disabled()">
+        {{ disabled() ? i18n.t().contact.sending : i18n.t().contact.send }}
+      </button>
+    </form>
+  </div>
+</section>

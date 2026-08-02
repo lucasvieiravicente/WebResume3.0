@@ -1,0 +1,119 @@
+.experience-head {
+  margin-bottom: 3rem;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  padding-left: 1.4rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), rgba(79, 140, 255, 0.08));
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.marker {
+  position: absolute;
+  left: -1.4rem;
+  top: 1.35rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+}
+
+.card {
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(79, 140, 255, 0.35);
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-top h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card-top span {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.roles {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.role {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
+
+.role-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.role h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.role-top span {
+  color: var(--text-dim);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.role p {
+  margin: 0;
+  color: var(--text-muted);
+}

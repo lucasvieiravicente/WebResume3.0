@@ -1,0 +1,29 @@
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: #080a10;
+  padding: 2.5rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+h3 {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--text-muted);
+}
+
+small {
+  color: var(--text-dim);
+}

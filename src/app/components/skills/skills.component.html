@@ -1,0 +1,51 @@
+@if (visible()) {
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="skills-head">
+        <h2 class="section-title">{{ i18n.t().skills.title }}</h2>
+        <p class="section-lead">{{ i18n.t().skills.lead }}</p>
+      </div>
+
+      @if (loading()) {
+        <div class="state">{{ i18n.t().skills.loading }}</div>
+      } @else {
+        <div class="stack-list">
+          @for (group of groups(); track group.stack.stackId) {
+            <section class="stack-block">
+              <h3>{{ group.stack.stackName }}</h3>
+              <div class="cards">
+                @for (item of group.knowledges; track item.title) {
+                  <article class="skill-card">
+                    <div class="icon-wrap">
+                      <img [src]="imageSrc(item.fileData)" [alt]="item.title" />
+                    </div>
+                    <h4>{{ item.title }}</h4>
+                    <button type="button" (click)="openDetails(item)">{{ i18n.t().skills.seeMore }}</button>
+                  </article>
+                }
+              </div>
+            </section>
+          }
+        </div>
+      }
+    </div>
+
+    @if (selected(); as item) {
+      <div class="modal-backdrop" (click)="closeDetails()">
+        <div class="modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+          <button class="close" type="button" (click)="closeDetails()" [attr.aria-label]="i18n.t().skills.close">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="modal-icon">
+            <img [src]="imageSrc(item.fileData)" [alt]="item.title" />
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.firstDescription }}</p>
+          @if (item.secondDescription) {
+            <p>{{ item.secondDescription }}</p>
+          }
+        </div>
+      </div>
+    }
+  </section>
+}

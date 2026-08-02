@@ -1,0 +1,56 @@
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ i18n.t().hero.eyebrow }}</p>
+      <h1>
+        {{ i18n.t().hero.titlePrefix }} <span>{{ i18n.t().hero.titleHighlight }}</span>,
+        <br />{{ i18n.t().hero.titleSuffix }}
+      </h1>
+      <p class="lead">{{ i18n.t().hero.lead }}</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" [href]="i18n.profile.resumeFile" target="_blank" rel="noopener">
+          <i class="fas fa-download"></i>
+          {{ i18n.t().hero.resume }}
+        </a>
+        <button class="btn" type="button" (click)="scrollTo('projects')">
+          {{ i18n.t().hero.portfolio }}
+        </button>
+        <button class="btn btn-round" type="button" (click)="scrollTo('about')" [attr.aria-label]="i18n.t().hero.aboutCta">
+          <i class="fas fa-arrow-down"></i>
+        </button>
+      </div>
+
+      <div class="hero-follow">
+        <span>{{ i18n.t().hero.follow }}</span>
+        <div class="social-row">
+          @for (social of socialMedias; track social.url) {
+            <a class="social-link" [href]="social.url" target="_blank" rel="noopener" [attr.aria-label]="social.label">
+              <i [class]="social.icon"></i>
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="portrait-wrap">
+        <img [src]="i18n.profile.photoPrimary" [alt]="i18n.profile.fullName" />
+      </div>
+
+      <aside class="hero-aside">
+        <article>
+          <h3>{{ i18n.t().hero.aboutTitle }}</h3>
+          <p>{{ i18n.t().hero.aboutText }}</p>
+          <button type="button" (click)="scrollTo('about')">{{ i18n.t().hero.aboutLink }}</button>
+        </article>
+        <article>
+          <h3>{{ i18n.t().hero.workTitle }}</h3>
+          <p>{{ i18n.t().hero.workText }}</p>
+          <button type="button" (click)="scrollTo('projects')">{{ i18n.t().hero.workLink }}</button>
+        </article>
+      </aside>
+    </div>
+  </div>
+</section>

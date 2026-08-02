@@ -1,0 +1,46 @@
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-head">
+      <h2 class="section-title">{{ i18n.t().about.title }}</h2>
+      <p class="section-lead">{{ i18n.t().about.lead }}</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo">
+        <img [src]="i18n.profile.photoSecondary" [alt]="i18n.profile.fullName" />
+      </div>
+
+      <div class="about-content">
+        <h3>{{ i18n.t().about.greeting }}</h3>
+        <p>{{ i18n.t().about.p1 }}</p>
+        <p>{{ i18n.t().about.p2 }}</p>
+
+        <div class="details">
+          @for (item of details(); track item.label) {
+            <div class="detail">
+              <span>{{ item.label }}:</span>
+              @if (item.href) {
+                <a [href]="item.href" target="_blank" rel="noopener">{{ item.value }}</a>
+              } @else {
+                <strong>{{ item.value }}</strong>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="stats">
+          <article>
+            <strong>{{ professionalYears() }}</strong>
+            <span>{{ i18n.t().about.yearsLabel }}</span>
+            <p>{{ i18n.t().about.yearsText }}</p>
+          </article>
+          <article>
+            <strong>TL</strong>
+            <span>{{ i18n.t().about.roleLabel }}</span>
+            <p>{{ i18n.t().about.roleText }}</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<header class="site-header" [class.is-scrolled]="scrolled()" [class.is-open]="menuOpen()">
+  <div class="container header-inner">
+    <a class="brand" (click)="scrollTo('home')" role="button" tabindex="0">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-text">{{ i18n.profile.brandName }}</span>
+    </a>
+
+    <div class="header-actions">
+      <div class="lang-switcher" [class.is-open]="langOpen()">
+        <button
+          class="lang-trigger"
+          type="button"
+          (click)="toggleLang()"
+          [attr.aria-expanded]="langOpen()"
+          [attr.aria-label]="i18n.t().lang.label"
+        >
+          <img class="flag" [src]="currentLang().flagSrc" [alt]="i18n.t().lang[currentLang().labelKey]" />
+          <i class="fas fa-chevron-down"></i>
+        </button>
+
+        @if (langOpen()) {
+          <div class="lang-menu" role="listbox">
+            @for (item of i18n.languages; track item.code) {
+              <button
+                type="button"
+                role="option"
+                [class.is-active]="i18n.lang() === item.code"
+                (click)="selectLang(item.code)"
+              >
+                <img class="flag" [src]="item.flagSrc" [alt]="i18n.t().lang[item.labelKey]" />
+                <span>{{ i18n.t().lang[item.labelKey] }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <nav class="nav" [class.is-open]="menuOpen()" [attr.aria-label]="i18n.t().nav.home">
+        @for (link of links(); track link.id) {
+          <a
+            class="nav-link"
+            [class.is-active]="activeSection() === link.id"
+            (click)="scrollTo(link.id)"
+            role="button"
+            tabindex="0"
+          >
+            {{ link.label }}
+          </a>
+        }
+        <a class="nav-phone" [href]="i18n.profile.phoneHref">{{ i18n.profile.phoneDisplay }}</a>
+      </nav>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="i18n.t().nav.openMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>

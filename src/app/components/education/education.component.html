@@ -1,0 +1,51 @@
+<section class="section education" id="education">
+  <div class="container education-grid">
+    <div>
+      <h2 class="section-title">{{ i18n.t().education.title }}</h2>
+      <article class="edu-card">
+        <div class="edu-top">
+          <h3>{{ i18n.t().education.school }}</h3>
+          <span>{{ i18n.t().education.period }}</span>
+        </div>
+        <h4>{{ i18n.t().education.course }}</h4>
+        <p>{{ i18n.t().education.location }}</p>
+      </article>
+
+      <div class="side-block">
+        <h3>{{ i18n.t().education.languagesTitle }}</h3>
+        <ul class="caps">
+          @for (item of i18n.t().education.languageItems; track item.name) {
+            <li>
+              <i class="fas fa-language"></i>
+              <span>{{ item.name }} — {{ item.level }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-title">{{ i18n.t().education.whatTitle }}</h2>
+      <ul class="caps">
+        @for (item of i18n.t().education.capabilities; track item) {
+          <li>
+            <i class="fas fa-check"></i>
+            <span>{{ item }}</span>
+          </li>
+        }
+      </ul>
+
+      <div class="side-block">
+        <h3>{{ i18n.t().education.certsTitle }}</h3>
+        <ul class="caps">
+          @for (item of i18n.t().education.certifications; track item) {
+            <li>
+              <i class="fas fa-certificate"></i>
+              <span>{{ item }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

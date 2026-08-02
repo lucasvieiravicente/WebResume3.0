@@ -1,0 +1,120 @@
+.about {
+  background: linear-gradient(180deg, transparent, rgba(23, 27, 39, 0.65) 20%, rgba(23, 27, 39, 0.65) 80%, transparent);
+}
+
+.about-head {
+  margin-bottom: 3rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.about-photo img {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  object-position: center 28%;
+  aspect-ratio: 4 / 5;
+}
+
+.about-content h3 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+}
+
+.about-content p {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  margin: 1.8rem 0 2rem;
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detail a,
+.detail strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.detail a:hover {
+  color: var(--accent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stats article {
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.stats span {
+  display: block;
+  margin: 0.55rem 0 0.4rem;
+  font-weight: 700;
+}
+
+.stats p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .details,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
