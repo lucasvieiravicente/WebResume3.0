@@ -25,18 +25,15 @@ npm run build
 
 ## Deploy (GitHub Pages)
 
-O workflow em `.github/workflows/deploy-github-pages.yml` faz build e publica em:
+O workflow em `.github/workflows/deploy-github-pages.yml` faz build e publica **neste mesmo repositório** (`WebResume3.0`):
 
-`https://lucasvieiravicente.github.io/`
-
-(repositório de destino: `lucasvieiravicente/lucasvieiravicente.github.io`)
+`https://lucasvieiravicente.github.io/WebResume3.0/`
 
 ### Configuração (uma vez)
 
-1. Crie um Personal Access Token (classic) com escopo `repo`, ou fine-grained com write no repo `lucasvieiravicente.github.io`.
-2. No repo `WebResume3.0`, vá em **Settings → Secrets and variables → Actions**.
-3. Crie o secret `GH_PAGES_TOKEN` com o token.
-4. Confirme que o repo `lucasvieiravicente.github.io` existe e o Pages está em **Deploy from a branch → `main` / `(root)`**.
+1. No repo `WebResume3.0`: **Settings → Pages**
+2. Em **Build and deployment → Source**, selecione **GitHub Actions** (não “Deploy from a branch”)
+3. Não é necessário PAT / secret extra — usa o `GITHUB_TOKEN`
 
 ### Uso
 
