@@ -45,8 +45,8 @@ export class HeaderComponent {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.lang-switcher')) {
+    const target = event.target as Element | null;
+    if (!target?.closest?.('.lang-switcher')) {
       this.langOpen.set(false);
     }
   }
@@ -65,11 +65,13 @@ export class HeaderComponent {
     this.langOpen.set(false);
   }
 
-  toggleLang(): void {
+  toggleLang(event: Event): void {
+    event.stopPropagation();
     this.langOpen.update((open) => !open);
   }
 
-  selectLang(lang: Lang): void {
+  selectLang(lang: Lang, event: Event): void {
+    event.stopPropagation();
     this.i18n.setLang(lang);
     this.langOpen.set(false);
   }

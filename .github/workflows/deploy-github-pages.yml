@@ -4,22 +4,20 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: pages-docs
+  group: pages-user-site
   cancel-in-progress: true
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build-and-commit-docs:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,14 +40,14 @@ jobs:
           cp docs/index.html docs/404.html
           touch docs/.nojekyll
 
-      - name: Commit and push docs
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs
-          if git diff --staged --quiet; then
-            echo "No changes in docs/"
-            exit 0
-          fi
-          git commit -m "chore: update GitHub Pages docs"
-          git push
+      - name: Deploy to lucasvieiravicente.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          external_repository: lucasvieiravicente/lucasvieiravicente.github.io
+          publish_branch: master
+          publish_dir: ./docs
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: 'deploy: update site from WebResume3.0'

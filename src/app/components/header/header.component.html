@@ -6,11 +6,11 @@
     </a>
 
     <div class="header-actions">
-      <div class="lang-switcher" [class.is-open]="langOpen()">
+      <div class="lang-switcher" [class.is-open]="langOpen()" (click)="$event.stopPropagation()">
         <button
           class="lang-trigger"
           type="button"
-          (click)="toggleLang()"
+          (click)="toggleLang($event)"
           [attr.aria-expanded]="langOpen()"
           [attr.aria-label]="i18n.t().lang.label"
         >
@@ -25,7 +25,7 @@
                 type="button"
                 role="option"
                 [class.is-active]="i18n.lang() === item.code"
-                (click)="selectLang(item.code)"
+                (click)="selectLang(item.code, $event)"
               >
                 <img class="flag" [src]="item.flagSrc" [alt]="i18n.t().lang[item.labelKey]" />
                 <span>{{ i18n.t().lang[item.labelKey] }}</span>

@@ -1,8 +1,8 @@
 .app-shell {
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 main {
   display: block;
+  overflow-x: clip;
 }

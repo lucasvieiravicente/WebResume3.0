@@ -3,6 +3,7 @@
   inset: 0 0 auto;
   z-index: 100;
   height: var(--header-h);
+  overflow: visible;
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
   border-bottom: 1px solid transparent;
 }
@@ -45,6 +46,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  overflow: visible;
 }
 
 .nav {
@@ -94,6 +96,8 @@
 
 .lang-switcher {
   position: relative;
+  z-index: 130;
+  overflow: visible;
 }
 
 .lang-trigger {

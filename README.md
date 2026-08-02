@@ -23,29 +23,31 @@ Acesse `http://localhost:4200/`.
 npm run build
 ```
 
-## Deploy (GitHub Pages — método docs)
+## Deploy (GitHub Pages — user site)
 
-Publicação pela pasta `docs` no próprio `WebResume3.0` (sem PAT / outro repo).
+O build é publicado no repositório [`lucasvieiravicente.github.io`](https://github.com/lucasvieiravicente/lucasvieiravicente.github.io) (site de usuário).
 
-**URL:** `https://lucasvieiravicente.github.io/WebResume3.0/`
+**URL:** `https://lucasvieiravicente.github.io/`
 
 ### Configuração (uma vez)
 
-1. No repo `WebResume3.0` → **Settings → Pages**
-2. Source: **Deploy from a branch**
-3. Branch: **`main`** / folder: **`/docs`**
+1. Crie um **Personal Access Token** (classic: scope `repo`, ou fine-grained com Contents: Read and write no repo `lucasvieiravicente.github.io`)
+2. Em `WebResume3.0` → **Settings → Secrets and variables → Actions**
+3. Novo secret: nome `PAGES_DEPLOY_TOKEN`, valor = o token
+4. No repo `lucasvieiravicente.github.io` → **Settings → Pages**
+   - Source: **Deploy from a branch**
+   - Branch: **`master`** / folder: **`/ (root)`**
+5. (Opcional) Em `WebResume3.0` → **Settings → Pages**, desative Pages se ainda estiver ativo em `/docs` — a URL `/WebResume3.0` deixa de ser necessária
 
 ### Como atualiza
 
-- Push na `main` (fora de `docs/`) → Action gera `docs` e faz commit
+- Push na `main` → Action faz build e publica em `lucasvieiravicente.github.io`
 - Ou **Actions → Deploy GitHub Pages → Run workflow**
 
-Manual:
+Manual (sem Action):
 
 ```bash
 npm run build:pages
-cp docs/index.html docs/404.html   # no Windows: copy docs\index.html docs\404.html
-git add docs
-git commit -m "chore: update GitHub Pages docs"
-git push
+cp docs/index.html docs/404.html
+# copie o conteúdo de docs/ para o repo lucasvieiravicente.github.io e faça push
 ```

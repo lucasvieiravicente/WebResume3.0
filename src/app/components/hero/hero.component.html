@@ -10,7 +10,13 @@
       <p class="lead">{{ i18n.t().hero.lead }}</p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" [href]="i18n.profile.resumeFile" target="_blank" rel="noopener">
+        <a
+          class="btn btn-primary"
+          [href]="i18n.profile.resumeFile"
+          [attr.download]="i18n.profile.resumeFileName"
+          target="_blank"
+          rel="noopener"
+        >
           <i class="fas fa-download"></i>
           {{ i18n.t().hero.resume }}
         </a>

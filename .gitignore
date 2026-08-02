@@ -2,10 +2,10 @@
 
 # Compiled output
 /dist
+/docs
 /tmp
 /out-tsc
 /bazel-out
-# /docs is committed for GitHub Pages (DIO-style deploy)
 
 # Node
 /node_modules
