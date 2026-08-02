@@ -138,7 +138,7 @@ export const PROFILE = {
   brandName: 'Lucas V.G. Vicente',
   phoneDisplay: '+55 (11) 98377-3017',
   phoneHref: 'tel:+5511983773017',
-  email: 'lucasvieiravicente1@gmail.com',
+  email: 'contato@lucasvgvicente.com',
   location: 'Mauá, São Paulo, Brasil',
   locationUrl: 'https://goo.gl/maps/1eTjhJJapNkz1fE99',
   linkedin: 'https://www.linkedin.com/in/lucas-vieira-vicente',
