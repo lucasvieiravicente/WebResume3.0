@@ -4,24 +4,28 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: pages-deploy
+  group: pages-docs
   cancel-in-progress: true
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build-and-deploy:
+  build-and-commit-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -32,20 +36,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Pages
         run: npm run build:pages
 
       - name: Prepare SPA fallback
-        run: cp dist/web-resume-angular3.0/browser/index.html dist/web-resume-angular3.0/browser/404.html
+        run: cp docs/index.html docs/404.html
 
-      - name: Deploy to lucasvieiravicente.github.io
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
-          external_repository: lucasvieiravicente/lucasvieiravicente.github.io
-          publish_branch: main
-          publish_dir: dist/web-resume-angular3.0/browser
-          force_orphan: true
-          user_name: github-actions[bot]
-          user_email: github-actions[bot]@users.noreply.github.com
-          commit_message: Deploy WebResume 3.0 from WebResume3.0
+      - name: Commit and push docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --staged --quiet; then
+            echo "No changes in docs/"
+            exit 0
+          fi
+          git commit -m "chore: update GitHub Pages docs"
+          git push
