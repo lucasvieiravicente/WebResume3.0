@@ -25,32 +25,27 @@ npm run build
 
 ## Deploy (GitHub Pages — método docs)
 
-O site é publicado pela pasta `docs` **neste mesmo repositório** (`WebResume3.0`):
+Publicação pela pasta `docs` no próprio `WebResume3.0` (sem PAT / outro repo).
 
-`https://lucasvieiravicente.github.io/WebResume3.0/`
+**URL:** `https://lucasvieiravicente.github.io/WebResume3.0/`
 
 ### Configuração (uma vez)
 
-1. No repo `WebResume3.0`: **Settings → Pages**
+1. No repo `WebResume3.0` → **Settings → Pages**
 2. Source: **Deploy from a branch**
-3. Branch: `main` / folder: **`/docs`**
+3. Branch: **`main`** / folder: **`/docs`**
 
-Não é necessário PAT nem outro repositório.
+### Como atualiza
 
-### Como atualizar
+- Push na `main` (fora de `docs/`) → Action gera `docs` e faz commit
+- Ou **Actions → Deploy GitHub Pages → Run workflow**
 
-**Automático:** push na `main` dispara o Action, que gera `docs/` e faz commit.
-
-**Manual (como no artigo DIO):**
+Manual:
 
 ```bash
 npm run build:pages
-# copia index -> 404 (opcional, o Action já faz)
-copy docs\index.html docs\404.html
-
+cp docs/index.html docs/404.html   # no Windows: copy docs\index.html docs\404.html
 git add docs
 git commit -m "chore: update GitHub Pages docs"
 git push
 ```
-
-Depois de configurar o Pages, aguarde 1–2 minutos e abra a URL acima.

@@ -24,8 +24,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -40,7 +38,9 @@ jobs:
         run: npm run build:pages
 
       - name: Prepare SPA fallback
-        run: cp docs/index.html docs/404.html
+        run: |
+          cp docs/index.html docs/404.html
+          touch docs/.nojekyll
 
       - name: Commit and push docs
         run: |
