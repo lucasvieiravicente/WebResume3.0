@@ -8,18 +8,16 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: pages-deploy
   cancel-in-progress: true
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,9 +29,6 @@ jobs:
           node-version: 24
           cache: npm
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
@@ -43,18 +38,14 @@ jobs:
       - name: Prepare SPA fallback
         run: cp dist/web-resume-angular3.0/browser/index.html dist/web-resume-angular3.0/browser/404.html
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: Deploy to lucasvieiravicente.github.io
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: dist/web-resume-angular3.0/browser
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
+          external_repository: lucasvieiravicente/lucasvieiravicente.github.io
+          publish_branch: main
+          publish_dir: dist/web-resume-angular3.0/browser
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: Deploy WebResume 3.0 from WebResume3.0

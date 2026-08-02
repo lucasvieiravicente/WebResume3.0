@@ -25,22 +25,25 @@ npm run build
 
 ## Deploy (GitHub Pages)
 
-O workflow em `.github/workflows/deploy-github-pages.yml` faz build e publica **neste mesmo repositório** (`WebResume3.0`):
+O código fica no repo `WebResume3.0`. O workflow publica o site em:
 
-`https://lucasvieiravicente.github.io/WebResume3.0/`
+`https://lucasvieiravicente.github.io/`
+
+(destino: repositório `lucasvieiravicente/lucasvieiravicente.github.io`)
+
+> A URL `/WebResume3.0/` e a URL raiz (`github.io/`) são coisas diferentes.
+> Só o repo `*.github.io` controla a raiz.
 
 ### Configuração (uma vez)
 
-1. No repo `WebResume3.0`: **Settings → Pages**
-2. Em **Build and deployment → Source**, selecione **GitHub Actions** (não “Deploy from a branch”)
-3. Não é necessário PAT / secret extra — usa o `GITHUB_TOKEN`
+1. Crie um PAT com write no repo `lucasvieiravicente.github.io` (classic: escopo `repo`).
+2. No repo `WebResume3.0`: **Settings → Secrets and variables → Actions** → secret `GH_PAGES_TOKEN`.
+3. No repo `lucasvieiravicente.github.io`: **Settings → Pages** → Source **Deploy from a branch** → `main` / `(root)`.
 
 ### Uso
 
-- Push na `main` dispara o deploy automaticamente.
-- Ou rode manualmente em **Actions → Deploy GitHub Pages → Run workflow**.
-
-Build local equivalente:
+- Push na `main` do `WebResume3.0` dispara o deploy.
+- Ou **Actions → Deploy GitHub Pages → Run workflow**.
 
 ```bash
 npm run build:pages
