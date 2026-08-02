@@ -20,6 +20,18 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check deploy token
+        env:
+          PAGES_DEPLOY_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$PAGES_DEPLOY_TOKEN" ]; then
+            echo "::error::Secret PAGES_DEPLOY_TOKEN não encontrado."
+            echo "Crie um PAT (classic com scope repo, ou fine-grained com Contents: Read and write no repo lucasvieiravicente.github.io)"
+            echo "e adicione em WebResume3.0 → Settings → Secrets and variables → Actions → New repository secret"
+            echo "Nome exato: PAGES_DEPLOY_TOKEN"
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v6
 

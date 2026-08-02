@@ -31,13 +31,20 @@ O build é publicado no repositório [`lucasvieiravicente.github.io`](https://gi
 
 ### Configuração (uma vez)
 
-1. Crie um **Personal Access Token** (classic: scope `repo`, ou fine-grained com Contents: Read and write no repo `lucasvieiravicente.github.io`)
-2. Em `WebResume3.0` → **Settings → Secrets and variables → Actions**
-3. Novo secret: nome `PAGES_DEPLOY_TOKEN`, valor = o token
+O `GITHUB_TOKEN` padrão **não** consegue fazer push em outro repositório. Por isso o workflow usa o secret `PAGES_DEPLOY_TOKEN`.
+
+1. Crie um token em https://github.com/settings/tokens
+   - **Classic:** marque o scope `repo`
+   - **Fine-grained:** Resource owner = você; Repository access = só `lucasvieiravicente.github.io`; Permissions → Repository → Contents = **Read and write**
+2. Em https://github.com/lucasvieiravicente/WebResume3.0/settings/secrets/actions
+3. **New repository secret**
+   - Name: `PAGES_DEPLOY_TOKEN` (exatamente este nome)
+   - Secret: cole o token
 4. No repo `lucasvieiravicente.github.io` → **Settings → Pages**
    - Source: **Deploy from a branch**
    - Branch: **`master`** / folder: **`/ (root)`**
-5. (Opcional) Em `WebResume3.0` → **Settings → Pages**, desative Pages se ainda estiver ativo em `/docs` — a URL `/WebResume3.0` deixa de ser necessária
+5. Rode de novo: **Actions → Deploy GitHub Pages → Run workflow**
+6. (Opcional) Em `WebResume3.0` → **Settings → Pages**, desative Pages se ainda estiver ativo em `/docs`
 
 ### Como atualiza
 

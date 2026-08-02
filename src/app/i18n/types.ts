@@ -148,7 +148,7 @@ export const PROFILE = {
     'https://api.whatsapp.com/send?phone=5511983773017&text=Olá,%20tudo%20bem?%20Te%20encontrei%20no%20seu%20currículo%20online',
   resumeFile: 'assets/files/curriculoPdf.pdf',
   resumeFileName: 'Lucas-Vieira-Vicente-CV.pdf',
-  photoPrimary: 'assets/images/foto1.jpg',
+  photoPrimary: 'assets/images/foto1.png',
   photoSecondary: 'assets/images/foto2.jpeg',
   professionalStartYear: 2019
 } as const;
