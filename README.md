@@ -43,8 +43,26 @@ O `GITHUB_TOKEN` padrão **não** consegue fazer push em outro repositório. Por
 4. No repo `lucasvieiravicente.github.io` → **Settings → Pages**
    - Source: **Deploy from a branch**
    - Branch: **`master`** / folder: **`/ (root)`**
+   - Custom domain: **`lucasvgvicente.com`**
 5. Rode de novo: **Actions → Deploy GitHub Pages → Run workflow**
 6. (Opcional) Em `WebResume3.0` → **Settings → Pages**, desative Pages se ainda estiver ativo em `/docs`
+
+### Domínio customizado (`lucasvgvicente.com`)
+
+O deploy usa `force_orphan: true`, que **substitui todo o conteúdo** da branch `master` a cada publicação. Sem um arquivo `CNAME` no build, o GitHub Pages perde o vínculo com o domínio — daí o redirect para `*.github.io`, HTTP 404 e **Enforce HTTPS** indisponível.
+
+Este repositório inclui `public/CNAME` (copiado para `docs/` no build) e o workflow define `cname: lucasvgvicente.com`.
+
+**DNS (apex `@`):** registros **A** apontando para:
+
+- `185.199.108.153`
+- `185.199.109.153`
+- `185.199.110.153`
+- `185.199.111.153`
+
+**DNS (`www`):** registro **CNAME** `www` → `lucasvieiravicente.github.io`
+
+Após o próximo deploy com o `CNAME` presente, aguarde até ~24 h para o certificado HTTPS ser emitido; só então **Enforce HTTPS** fica habilitável em **Settings → Pages**.
 
 ### Como atualiza
 
